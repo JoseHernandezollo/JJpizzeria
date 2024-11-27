@@ -1,0 +1,89 @@
+//Proyecto programacion c++//
+//programing logic//
+//Jose J. Hernandez Ortega//
+
+
+#include <iostream>
+#include <vector>
+#include <string>
+#include <limits>
+
+using namespace std;
+
+// pizzas y refresco el precio de ellas//
+const vector<string> pizzaNames = {"queso", "Pepperoni", "bacon","todas las carnes","Coca Cola","Sprite","Jugos","Agua"};
+const vector<float> pizzaPrices = {8.55, 11.30, 11.25, 13.75,5.00,5.00,5.00,1.00};
+
+// Para que enseñe el menu//
+void displayMenu() {
+    cout << "\nMenú de Pizzas:" << endl;
+    for (size_t i = 0; i < pizzaNames.size(); ++i) {
+        cout << (i + 1) << ". " << pizzaNames[i] << " ($" << pizzaPrices[i] << ")" << endl;
+    }
+    cout << (pizzaNames.size() + 1) << ". Terminar Pedido" << endl;
+}
+
+int main() {
+    int opcion;
+    float total = 0.0;
+    vector<string> pedidos;
+
+    cout << "Bienvenido a la Pizzería" << endl;
+
+    do {
+        displayMenu();  // el menu 
+        cout << "Que desea ordenar: "<<endl;
+        //cin<<opcion;//
+        //opcion++;//
+
+        // si el input esta bien o mal//
+        while (!(cin >> opcion)  || opcion < 1 || opcion > pizzaNames.size() + 1) { //mis lineas de gogle
+            cout << "Opción no válida, intente de nuevo: "<<endl;
+            cin.clear(); // Clear the error flag
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); //ignora el input invalido
+        }
+
+        if (opcion >= 1 && opcion <= pizzaNames.size()) {
+            total += pizzaPrices[opcion - 1]; // añade el precio de la pizza
+            (pizzaNames[opcion - 1]);
+        } else if (opcion != pizzaNames.size() + 1) {
+            cout << "Opción inválida, intente de nuevo." << endl;
+        }
+
+    } while (opcion != pizzaNames.size() + 1); // el loop para que el usuario siga pidiendo hasta que le de terminar peidio//
+
+    // enseña el total y que pidio la persona//
+    cout << "Su pedido fue: " << endl;
+    for (const auto & pedido : pedidos) {
+        cout << pedido << endl;
+    }
+
+    cout << "El total es: $" << total << endl;
+    cout<<"\n";
+    
+    //si le gusto el programa//
+    int opciones;
+    cout<<"Le gusto nuestro programa"<<endl;
+    
+    cout << "1. Si :D" << endl;
+    cout << "2. No" << endl;
+    
+    {
+    string gusto;
+    //si la persona pone que si le gusto el programa//
+    cout<< "Le gusto nuestro servivio? ( si,no)"<<endl;
+    cin>>gusto;
+    if(gusto =="si"){//lo que dira si el usuario pone que si//
+    cout<<"Que bueno que le gusto nuestro servicio"<<endl<<gusto;
+    
+    }else if(gusto=="no"){
+        cout<<"Lamentamos que este servicio no este a su gusto digale su queja a un empleado y trabajermos en ello."<<endl;
+    }
+    }
+    
+
+    return 0;
+}
+    
+        
+    
